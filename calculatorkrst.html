@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="./src/styles.css" />
+    <title>Calculator</title>
+</head>
+<!-- Vervollständige die Elemente mit den passenden Klassen aus den CSS file //
+ // K: HTML is the content of the Calculator, CSS is the design and 
+ JavaScript makes the whole thing work -->
+
+<body>
+    <!-- Rahmen des Rechners // k: by adding "frame" the details from the css file
+     get imported directly into the html, same goes for "result" and "buttons"-->
+    <div class="frame">
+        <!-- Anzeige des Rechners // k: the display part of the calculator.
+         "result"is the css main part, "result-display" is what's shown in the
+         screen by the end.-->
+        <div class="result" id="result-display" type="text"></div>
+        <!-- Parentelement der Buttons // k: "buttons" main positioning,
+         "buttons" design detail for the buttons which is defined by n or b
+         sepperately but still the same. -->
+        <div class="buttons">
+            <!-- vervollständige die Buttons
+            k: buttons n or b defines the design by CSS, onclick is an event
+            the details are defined in JavaScript below. 
+            inner.HTML sets or returns the content of an element.
+            >shows text live< -->
+            <span class="button n" onclick="clearScreen()">AC</span>
+            <span class="button n" onclick="negate(this.innerHTML)">+/-</span>
+            <span class="button n" onclick="display(this.innerHTML)">%</span>
+            <span class="button n" onclick="deleteOne()">C</span>
+            <span class="button b" onclick="display(this.innerHTML)">1</span>
+            <span class="button b" onclick="display(this.innerHTML)">2</span>
+            <span class="button b" onclick="display(this.innerHTML)">3</span>
+            <span class="button n" onclick="display(this.innerHTML)">/</span>
+            <span class="button b" onclick="display(this.innerHTML)">4</span>
+            <span class="button b" onclick="display(this.innerHTML)">5</span>
+            <span class="button b" onclick="display(this.innerHTML)">6</span>
+            <span class="button n" onclick="display(this.innerHTML)">*</span>
+            <span class="button b" onclick="display(this.innerHTML)">7</span>
+            <span class="button b" onclick="display(this.innerHTML)">8</span>
+            <span class="button b" onclick="display(this.innerHTML)">9</span>
+            <span class="button n" onclick="display(this.innerHTML)">-</span>
+            <span class="button b" onclick="display(this.innerHTML)">0</span>
+            <span class="button n" onclick="display(this.innerHTML)">.</span>
+            <span class="button n" onclick="calculate(this.innerHTML)">=</span>
+            <span class="button n" onclick="display(this.innerHTML)">+</span>
+        </div>
+    </div>
+
+    <script>
+        //k: let is declaring that "screen" now is short form of
+        //document.getElementById("result-display") instead of typing the whole thing
+        //javascript makes the whole thing work so by getting the elementbyid result-display
+        //you edit the display part of the calculator.
+        let screen = document.getElementById("result-display");
+
+        function clearScreen() {
+            //Lösche den Inhalt der Anzeige  - erledigt!
+            //k: function clearScreen deletes the content with " " which means
+            //the screen is empty when pressed AC.
+            screen.innerHTML = "";
+
+        }
+
+        function deleteOne() {
+            //Lösche den letzen Eintrag  = erledigt!
+            //k: same as before but using slice if deletes last digit -1
+            screen.innerHTML = screen.innerHTML.slice(0, -1);
+
+        }
+
+        function negate() {
+            //Negiere den Inhalt der Anzeige
+            //k: turns -0 into 0 only, and NaN is not displayed.
+            if (screen.innerHTML !== "0" &&
+                screen.innerHTML !== "") {
+                screen.innerHTML = (parseFloat(screen.innerHTML) * -1);
+            }
+
+        }
+        //K: defining all buttons work under this function the same
+        function display(buttons) {
+            //Füge den Wert der gedrückten Taste der Anzeige hinzu - erledigt!
+            screen.innerHTML += buttons;
+
+        }
+
+        function calculate() {
+            //Berechne die Anzeige - erledigt!
+            try { //k: evaluates what is typed in the display
+                screen.innerHTML = eval(screen.innerHTML);
+            } catch (error) { // k: if an error occurs the display shows Error.
+                screen.innerHTML = "Error";
+            }
+
+        }
+    </script>
+</body>
+
+</html>
